@@ -13,16 +13,19 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Generate CHANGELOG
-        uses: docker://githubchangeloggenerator/github-changelog-generator:latest
-        with:
-          args: >
-            --user kcadorin
-            --project changelog
-            --token ${{ secrets.GITHUB_TOKEN }}
-            --no-issues
-            --no-pr-wo-labels
-            --future-release 1.0.7
-            --output CHANGELOG.md
+        run: task gen-changelog
+
+      # - name: Generate CHANGELOG
+      #   uses: docker://githubchangeloggenerator/github-changelog-generator:latest
+      #   with:
+      #     args: >
+      #       --user kcadorin
+      #       --project changelog
+      #       --token ${{ secrets.GITHUB_TOKEN }}
+      #       --no-issues
+      #       --no-pr-wo-labels
+      #       --future-release 1.0.7
+      #       --output CHANGELOG.md
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9

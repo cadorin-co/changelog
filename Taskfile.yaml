@@ -1,0 +1,13 @@
+# to run the taskfile please install task app
+# https://taskfile.dev/installation/
+# on mac use:
+# brew install go-task/tap/go-task
+version: "3"
+
+tasks:
+  gen-changelog:
+    desc: Auto Generate Changelog
+    dir: .
+    cmds:
+      - npm install -g auto-changelog
+      - auto-changelog
