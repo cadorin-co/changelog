@@ -1,0 +1,42 @@
+name: Generate CHANGELOG
+
+on:
+  push:
+    branches:
+      - feature/auto_tagging
+
+jobs:
+  generate_changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install packages
+        run: |
+          sudo snap install task --classic
+
+      - name: Generate CHANGELOG
+        run: task gen-changelog
+
+      # - name: Generate CHANGELOG
+      #   uses: docker://githubchangeloggenerator/github-changelog-generator:latest
+      #   with:
+      #     args: >
+      #       --user kcadorin
+      #       --project changelog
+      #       --token ${{ secrets.GITHUB_TOKEN }}
+      #       --no-issues
+      #       --no-pr-wo-labels
+      #       --future-release 1.0.7
+      #       --output CHANGELOG.md
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "CHANGELOG.md"
+          message: "Update changelog"
+          author_name: ${{ github.actor }}
+          author_email: ${{ github.actor }}@gmail.com
