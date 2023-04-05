@@ -36,7 +36,4 @@ jobs:
           add: "CHANGELOG.md"
           message: "Update changelog"
           author_name: ${{ github.actor }}
-          author_email: ${{ github.actor }}@users.noreply.github.com
-          commit: --signoff
-          tag: "1.0.7 --force"
-          tag_push: "--force"
+          author_email: ${{ github.actor }}@gmail.com
