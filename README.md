@@ -1,3 +1,3 @@
 # changelog
 
-This repo was created to test changelog and tag generation.
+This repo was created to test changelog and tag generation..
