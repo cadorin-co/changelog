@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [closed]
 jobs:
-  build:
+  tagging:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     steps:
@@ -16,6 +16,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_NUMBER: ${{ github.event.number }}
   generate_changelog:
+    needs: tagging
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
