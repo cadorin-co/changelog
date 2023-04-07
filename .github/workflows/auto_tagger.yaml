@@ -15,3 +15,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_NUMBER: ${{ github.event.number }}
+  generate_changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install packages
+        run: |
+          npm install -g auto-changelog
+
+      - name: Generate CHANGELOG
+        run: auto-changelog
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "CHANGELOG.md"
+          message: "Update changelog"
+          author_name: ${{ github.actor }}
+          author_email: ${{ github.actor }}@gmail.com
