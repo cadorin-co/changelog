@@ -16,7 +16,6 @@ jobs:
 
       - name: Install packages
         run: |
-          sudo snap install task --classic
           npm install -g auto-changelog
 
       - name: Generate CHANGELOG
