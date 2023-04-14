@@ -2,6 +2,10 @@ name: auto_tagger
 on:
   pull_request:
     types: [closed]
+permissions:
+  pull-requests: write
+  contents: read
+  id-token: write
 jobs:
   tagging:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
@@ -16,10 +20,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_NUMBER: ${{ github.event.number }}
   generate_changelog:
-    permissions:
-      pull-requests: write
-      contents: read
-      id-token: write
     needs: tagging
     runs-on: ubuntu-latest
     steps:
