@@ -1,4 +1,4 @@
-# CHANGELOG/AUTO TAGGING
+# Changelog/Auto Tagging
 
 This repo was created to test changelog and tag generation.
 
@@ -8,4 +8,4 @@ The auto tagger uses the merge commit message to create the tags, so be sure to 
 
 ## CHANGELOG
 
-Changelog will be generated and commited in the main branch when the PR status is closed.
+Changelog will be generated and commited in the main branch when the PR status is closed..
