@@ -17,7 +17,7 @@ jobs:
       - name: Bump version and push tag
         uses: RueLaLa/auto-tagger@master
         env:
-          GITHUB_TOKEN: ${{ secrets.KALEBY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_NUMBER: ${{ github.event.number }}
   generate_changelog:
     needs: tagging
@@ -42,3 +42,4 @@ jobs:
           message: "Update changelog"
           author_name: ${{ github.actor }}
           author_email: ${{ github.actor }}@gmail.com
+          github_token: ${{ secrets.KALEBY_TOKEN }}
