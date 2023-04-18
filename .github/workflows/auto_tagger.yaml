@@ -1,27 +1,27 @@
 name: auto_tagger
 on:
   push:
-  # pull_request:
-  #   types: [closed]
+  pull_request:
+    types: [closed]
 permissions:
   pull-requests: write
   contents: write
   id-token: write
 jobs:
-  # tagging:
-  #   if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #     - uses: actions/checkout@main
-  #       with:
-  #         fetch-depth: 0
-  #     - name: Bump version and push tag
-  #       uses: RueLaLa/auto-tagger@master
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         GITHUB_PR_NUMBER: ${{ github.event.number }}
+  tagging:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+      - name: Bump version and push tag
+        uses: RueLaLa/auto-tagger@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_PR_NUMBER: ${{ github.event.number }}
   generate_changelog:
-    # needs: tagging
+    needs: tagging
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
