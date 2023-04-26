@@ -22,7 +22,7 @@ permissions:
   id-token: write
 jobs:
   tagging:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    # if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@main
