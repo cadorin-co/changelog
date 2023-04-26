@@ -1,7 +1,15 @@
 name: auto_tagger
 on:
   pull_request:
-    types: [closed]
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
 permissions:
   pull-requests: write
   contents: write
