@@ -36,10 +36,24 @@ jobs:
       - name: Generate CHANGELOG
         run: auto-changelog
 
-      - name: Merge Branch
+      - name: Create PR
         uses: peter-evans/create-pull-request@v3.8.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: development
           commit-message: Automated merge
           delete-branch: true
+          labels: automerge
+
+      - name: Auto Approve Pull Request
+        uses: pascalgn/automerge-action@v0.14.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_labels: "automerge"
+
+      - name: Auto Merge Pull Request
+        uses: pascalgn/automerge-action@v0.14.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_labels: "automerge"
+          method: merge
