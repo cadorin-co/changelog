@@ -36,11 +36,10 @@ jobs:
       - name: Generate CHANGELOG
         run: auto-changelog
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
+      - name: Merge Branch
+        uses: peter-evans/create-pull-request@v3.8.0
         with:
-          add: "CHANGELOG.md"
-          message: "Update changelog"
-          author_name: ${{ github.actor }}
-          author_email: ${{ github.actor }}@gmail.com
-          github_token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          commit-message: Automated merge
+          delete-branch: true
