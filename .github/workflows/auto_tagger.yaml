@@ -47,13 +47,7 @@ jobs:
 
       - name: Auto Approve Pull Request
         uses: pascalgn/automerge-action@v0.14.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pull_labels: "automerge"
-
-      - name: Auto Merge Pull Request
-        uses: pascalgn/automerge-action@v0.14.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pull_labels: "automerge"
-          method: merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_LABELS: "automerge"
+          MERGE_METHOD: merge
