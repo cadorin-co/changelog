@@ -40,6 +40,6 @@ jobs:
         uses: peter-evans/create-pull-request@v3.8.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: development
           commit-message: Automated merge
           delete-branch: true
