@@ -59,9 +59,15 @@ jobs:
           labels: automerge
           base: main
 
-      - name: Auto Approve Pull Request
-        uses: pascalgn/automerge-action@v0.14.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_LABELS: "automerge"
-          MERGE_METHOD: merge
+      - name: Approve pull request
+        if: github.event.pull_request.base.ref == 'main' # Replace `main` with your protected branch name
+        uses: peter-evans/approve-pull-request@v2.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Auto Approve Pull Request
+      #   uses: pascalgn/automerge-action@v0.14.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     MERGE_LABELS: "automerge"
+      #     MERGE_METHOD: merge
